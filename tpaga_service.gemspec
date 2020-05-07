@@ -8,21 +8,17 @@ Gem::Specification.new do |spec|
   spec.version       = TpagaService::VERSION
   spec.authors       = ["Juan Contreras"]
   spec.email         = ["juan.contreras@packen.co"]
-
   spec.summary       = %q{TPaga API Ruby to Integreate with the payment gateway }
   spec.description   = %q{TPaga Payment Gateway API
-
-[Learn about TPaga](https://tpaga_service.co)
-
-[More information about this library] (http://tpaga_service.co/docs)
+[Learn about TPaga](https://tpaga.co)
 }
-  spec.homepage      = "https://github.com/jpcontreras/tpaga_service"
+  spec.homepage      = "https://rubygems.org/gems/tpaga_service"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "http://rubygems.org"
+    spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/jpcontreras/tpaga_service"

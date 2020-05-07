@@ -9,7 +9,7 @@ Installation
 To install as a gem in your environment type in your console:
 
 ```sh
-gem install tpaga-service
+gem install tpaga_service
 ```
 
 If you want to use in your rails application, add to your Gemfile:
@@ -30,16 +30,16 @@ Configuration
 If you are going to run tpaga in a rails environment add to the environment file (ex: `environments/development.rb`) the following lines:
 
 ```ruby
-  config.schema    = 'https'
-  config.host      = 'sandbox.tpaga_service.co'
-  config.base_path = '/api'
-  config.private_api_key   = 'd13fr8n7vhvkuch3lq2ds5qhjnd2pdd2'
-  config.public_api_key   = 'd13fr8n7vhvkuch3lq2ds5qhjnd2pdd2'
+  config.schema           = 'https'
+  config.host             = 'sandbox.tpaga.co'
+  config.base_path        = '/api'
+  config.private_api_key  = 'd13fr8n7vhvkuch3lq2ds5qhjnd2pddw2'
+  config.public_api_key   = 'e8tbtu6bdi1jts34h2ktdipschq9heq0a'
 ```
 
 using the respective api key for your TPaga user account.
 
-Next add the the file `tpaga-service.rb` to the rails initializers (ex: `initializers/tpaga-service.rb`) with he following lines:
+Next add the the file `tpaga_service.rb` to the rails initializers (ex: `initializers/tpaga_service.rb`) with he following lines:
 
 ```ruby
 require 'tpaga_service'
@@ -66,13 +66,13 @@ You can create a customer:
 require 'tpaga_service'
 
 # creating a tpaga_service customer object
-customer = TpagaService::Customer.new(
+customer = {
   firstName: 'foo',
   lastName:  'bar',
   email:     'foo@bar.com',
   phone:     '0000000000',
   gender:    'M'
-)
+}
 
 # call of the api to create the customer in the TPaga account
 customer = TpagaService::CustomerApi.create_customer customer
@@ -100,20 +100,19 @@ You can add a credit card to existing customers:
 
 ```ruby
 # build the credit card object to create
-credit_card_create = TpagaService::CreditCardCreate.new(
+credit_card_create = {
   primaryAccountNumber: '4111111111111111',
   expirationMonth:      '08',
-  expirationYear:       '2019',
+  expirationYear:       '2023',
   cardVerificationCode: '789',
-  cardHolderName:       'Jon Snow',
-  billingAddress:       TpagaService::BillingAddress.new
-)
+  cardHolderName:       'Jon Snow'
+}
 
-credit_card = TpagaService::CreditCardApi.add_credit_card 'customer_id', credit_card_create
+credit_card = TpagaService::CreditCardApi.add_credit_card credit_card_create, 'customer_id'
 # returns a TpagaService::CreditCard object, raise error if not
 ```
 
-you can get the credit card of customers:
+you can get the credit card of customers (NOT AVAILABLE):
 
 ```ruby
 credit_card = TpagaService::CreditCardApi.get_credit_card_by_id 'customer_id', 'credit_card_id'
@@ -131,7 +130,7 @@ You can charge a credit card:
 
 ```ruby
 # build the charge object
-charge = TpagaService::CreditCardCharge.new(
+charge = {
   amount:       10000,
   taxAmount:    10000 * 0.1,
   currency:     'COP',
@@ -139,14 +138,15 @@ charge = TpagaService::CreditCardCharge.new(
   installments: 1,
   description:  'A new leash for ghost',
   creditCard:   'credit_card_id'
-)
+}
 
 charge = TpagaService::CreditCardApi.add_credit_card_charge charge
 # return a TpagaService::CreditCardCharge object, raise error if not
 ```
 
-Retrieve a charge by it's id:
+Retrieve a charge by it's id  (NOT AVAILABLE):
 
 ```ruby
 charge = TpagaService::CreditCardApi.get_credit_card_charge_by_id 'charge_id'
 # return a TpagaService::CreditCardCharge object, raise error if not
+``` 

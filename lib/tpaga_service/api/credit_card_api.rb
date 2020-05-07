@@ -13,7 +13,7 @@ module TpagaService
 
       conn = Faraday.new
       resp = conn.delete do |req|
-        req.url "https://#{host}/api/customer/#{customer_id}"
+        req.url "https://#{host}/api/customer/#{customer_id}/credit_card/#{credit_card_id}"
         req.headers['Content-Type'] = 'application/json'
         req.headers['Authorization'] = 'Basic ' + ["#{api_key}:"].pack('m').delete("\r\n")
       end
