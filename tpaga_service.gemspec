@@ -6,7 +6,7 @@ require "tpaga_service/api/version"
 Gem::Specification.new do |spec|
   spec.name          = "tpaga_service"
   spec.version       = TpagaService::VERSION
-  spec.authors       = ["juanpacken"]
+  spec.authors       = ["Juan Contreras"]
   spec.email         = ["juan.contreras@packen.co"]
 
   spec.summary       = %q{TPaga API Ruby to Integreate with the payment gateway }
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
 [More information about this library] (http://tpaga_service.co/docs)
 }
-  spec.homepage      = "https://bitbucket.org/packen_ror_team/tpaga_service"
+  spec.homepage      = "https://github.com/jpcontreras/tpaga_service"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

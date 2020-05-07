@@ -46,8 +46,8 @@ module TpagaService
     #   }
     # }
     def add_credit_card_charge(data)
-      host = Rails.application.credentials[Rails.env.to_sym][:tpaga_api_host]
-      api_key = Rails.application.credentials[Rails.env.to_sym][:tpaga_private_api_key]
+      host = Swagger.configuration.host
+      api_key = Swagger.configuration.private_api_key
 
       conn = Faraday.new
       resp = conn.post do |req|
@@ -57,10 +57,8 @@ module TpagaService
         req.body = data.to_json
       end
       body = JSON.parse(resp.body)
-      TpagaService::validate_status_error(resp.status, body)
+      Swagger::Response.new(resp.status, body)
       return body
-    rescue Packen::ApiError => e
-      raise e
     end
   end
 end

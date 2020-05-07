@@ -1,5 +1,3 @@
-require 'net/http'
-
 module TpagaService
   module CreditCardApi
     extend self
@@ -12,8 +10,8 @@ module TpagaService
     end
 
     def delete_credit_card_by_id(customer_id, credit_card_id)
-      host = Rails.application.credentials[Rails.env.to_sym][:tpaga_api_host]
-      api_key = Rails.application.credentials[Rails.env.to_sym][:tpaga_private_api_key]
+      host = Swagger.configuration.host
+      api_key = Swagger.configuration.private_api_key
 
       conn = Faraday.new
       resp = conn.delete do |req|
@@ -22,17 +20,15 @@ module TpagaService
         req.headers['Authorization'] = 'Basic ' + ["#{api_key}:"].pack('m').delete("\r\n")
       end
       body = JSON.parse(resp.body)
-      TpagaService::validate_status_error(resp.status, body)
+      Swagger::Response.new(resp.status, body)
       return true
-    rescue Packen::ApiError => e
-      raise e
     end
 
     private
 
     def create_credit_card(credit_card_create, customer_id)
-      host = Rails.application.credentials[Rails.env.to_sym][:tpaga_api_host]
-      api_key = Rails.application.credentials[Rails.env.to_sym][:tpaga_public_api_key]
+      host = Swagger.configuration.host
+      api_key = Swagger.configuration.public_api_key
 
       conn = Faraday.new
       resp = conn.post do |req|
@@ -42,7 +38,7 @@ module TpagaService
         req.body = credit_card_create.to_json
       end
       body = JSON.parse(resp.body)
-      TpagaService::validate_status_error(resp.status, body)
+      Swagger::Response.new(resp.status, body)
       if body["token"].present?
         unless body["used"]
           body = _add_credit_card(body["token"], customer_id)
@@ -51,8 +47,6 @@ module TpagaService
         end
       end
       return body
-    rescue Packen::ApiError => e
-      raise e
     end
 
     # ===== Parameters:
@@ -83,8 +77,8 @@ module TpagaService
     #     }
     # }
     def _add_credit_card(credit_card_token, customer_id)
-      host = Rails.application.credentials[Rails.env.to_sym][:tpaga_api_host]
-      api_key = Rails.application.credentials[Rails.env.to_sym][:tpaga_private_api_key]
+      host = Swagger.configuration.host
+      api_key = Swagger.configuration.private_api_key
 
       conn = Faraday.new
       resp = conn.post do |req|
@@ -97,10 +91,8 @@ module TpagaService
         }.to_json
       end
       body = JSON.parse(resp.body)
-      TpagaService::validate_status_error(resp.status, body)
+      Swagger::Response.new(resp.status, body)
       return body
-    rescue Packen::ApiError => e
-      raise e
     end
 
     # ===== Parameters:

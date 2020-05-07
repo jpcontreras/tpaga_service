@@ -16,8 +16,8 @@ module TpagaService
         #@camelize_params = true
 
         # keys for API key authentication (param-name => api-key)
-        @private_api_key = {}
-        @public_api_key = {}
+        @private_api_key = 'njba5fp5v3lserbeg9nikible8mstn8s'
+        @public_api_key = 'e8tbtu6bdi1bae34h9nkipschq9heq0a'
         # api-key prefix for API key authentication, e.g. "Bearer" (param-name => api-key-prefix)
         #@api_key_prefix = {}
 
