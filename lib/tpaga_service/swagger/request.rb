@@ -10,30 +10,30 @@ module TpagaService
       # All requests must have an HTTP method and a path
       # Optionals parameters are :params, :headers, :body, :format, :host
       def initialize(http_method, path, attributes={})
-        attributes[:format] ||= Swagger.configuration.format
-        attributes[:params] ||= {}
-
-        # Set default headers
-        default_headers = {
-          'Content-Type' => "application/#{attributes[:format].downcase}",
-          'User-Agent' => Swagger.configuration.user_agent
-        }
-
-        # Merge argument headers into defaults
-        attributes[:headers] = default_headers.merge(attributes[:headers] || {})
-
-        # Stick in the auth token if there is one
-        if Swagger.authenticated?
-          attributes[:headers].merge!({:auth_token => Swagger.configuration.auth_token})
-        end
-
-        self.http_method = http_method.to_sym
-        self.path = path
-        attributes.each do |name, value|
-          send("#{name.to_s.underscore.to_sym}=", value)
-        end
-
-        update_params_for_auth!
+        # attributes[:format] ||= Swagger.configuration.format
+        # attributes[:params] ||= {}
+        #
+        # # Set default headers
+        # default_headers = {
+        #   'Content-Type' => "application/#{attributes[:format].downcase}",
+        #   'User-Agent' => Swagger.configuration.user_agent
+        # }
+        #
+        # # Merge argument headers into defaults
+        # attributes[:headers] = default_headers.merge(attributes[:headers] || {})
+        #
+        # # Stick in the auth token if there is one
+        # if Swagger.authenticated?
+        #   attributes[:headers].merge!({:auth_token => Swagger.configuration.auth_token})
+        # end
+        #
+        # self.http_method = http_method.to_sym
+        # self.path = path
+        # attributes.each do |name, value|
+        #   send("#{name.to_s.underscore.to_sym}=", value)
+        # end
+        #
+        # update_params_for_auth!
       end
 
 

@@ -5,7 +5,7 @@ require "tpaga_service/api/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "tpaga_service"
-  spec.version       = Tpaga::Service::VERSION
+  spec.version       = TpagaService::VERSION
   spec.authors       = ["juanpacken"]
   spec.email         = ["juan.contreras@packen.co"]
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
 [More information about this library] (http://tpaga_service.co/docs)
 }
-  spec.homepage      = "https://tpaga_service.co"
+  spec.homepage      = "https://bitbucket.org/packen_ror_team/tpaga_service"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
     spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-    spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+    spec.metadata["source_code_uri"] = "https://bitbucket.org/packen_ror_team/tpaga_service"
+    spec.metadata["changelog_uri"] = "https://bitbucket.org/packen_ror_team/tpaga_service/src/master/CODE_OF_CONDUCT.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
