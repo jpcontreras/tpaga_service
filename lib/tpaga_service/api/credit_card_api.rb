@@ -5,8 +5,6 @@ module TpagaService
     def add_credit_card(data, customer_id=nil)
       customer_id = customer_id || data[:customer_id]
       return create_credit_card(get_created_credit_card(data), customer_id)
-    rescue Packen::ApiError => e
-      raise e
     end
 
     def delete_credit_card_by_id(customer_id, credit_card_id)
@@ -39,11 +37,11 @@ module TpagaService
       end
       body = JSON.parse(resp.body)
       Swagger::Response.new(resp.status, body)
-      if body["token"].present?
+      unless body["token"].nil?
         unless body["used"]
           body = _add_credit_card(body["token"], customer_id)
         else
-          raise Packen::ApiError.new(Packen::TpagaStatus::CREDIT_CARD_IN_USE, 401)
+          raise 'Credit Card in Use'
         end
       end
       return body

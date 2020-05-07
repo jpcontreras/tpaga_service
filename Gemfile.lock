@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     tpaga_service (0.1.0)
+      faraday
 
 GEM
   remote: https://rubygems.org/
