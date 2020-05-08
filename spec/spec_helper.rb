@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "tpaga_service/api"
+require "tpaga_service"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

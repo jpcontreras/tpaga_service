@@ -68,8 +68,20 @@ module TpagaService
   end
 
   class ServerError < StandardError
+    attr_reader :status, :message
+
+    def initialize(status, message)
+      @status = status
+      @message = message
+    end
   end
 
   class ClientError < StandardError
+    attr_reader :status, :message
+
+    def initialize(status, message)
+      @status = status
+      @message = message
+    end
   end
 end

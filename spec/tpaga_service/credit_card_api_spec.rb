@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TpagaService::CreditCardApi, type: :service do
   describe "Tpaga Credit Card API" do
 		before(:each) do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TpagaService::CustomerApi, type: :service do
   describe "Tpaga Customer API" do
     it 'should create a new customer with right data' do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TpagaService::RefundApi, type: :service do
   describe "Tpaga Refund API" do
 

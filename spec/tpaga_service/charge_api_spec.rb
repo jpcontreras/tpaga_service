@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TpagaService::ChargeApi, type: :service do
   describe "Tpaga Charge API" do
 
